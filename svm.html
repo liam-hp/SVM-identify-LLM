@@ -7725,14 +7725,15 @@ splitting it with high dimensional hyperplanes in a way that maximizes the margi
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
 
 <span class="n">rewrite_paras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">"rewrite_paras.csv"</span><span class="p">)</span>
-<span class="nf">head</span><span class="p">(</span><span class="n">rewrite_paras</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">rewrite_paras</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="nf">everything</span><span class="p">(),</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">substr</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">)))</span><span class="w"> </span><span class="c1"># don't display the whole sections</span>
 </pre></div>
 </div>
 </div>
@@ -7744,49 +7745,15 @@ splitting it with high dimensional hyperplanes in a way that maximizes the margi
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>-- <span class="ansi-bold">Attaching core tidyverse packages</span> ------------------------ tidyverse 2.0.0 --
-<span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">dplyr    </span> 1.1.4     <span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">readr    </span> 2.1.5
-<span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">forcats  </span> 1.0.0     <span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">stringr  </span> 1.5.1
-<span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">ggplot2  </span> 3.5.1     <span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">tibble   </span> 3.2.1
-<span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">lubridate</span> 1.9.4     <span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">tidyr    </span> 1.3.1
-<span class="ansi-green-fg">v</span> <span class="ansi-blue-fg">purrr    </span> 1.0.4     
--- <span class="ansi-bold">Conflicts</span> ------------------------------------------ tidyverse_conflicts() --
-<span class="ansi-red-fg">x</span> <span class="ansi-blue-fg">dplyr</span>::<span class="ansi-green-fg">filter()</span> masks <span class="ansi-blue-fg">stats</span>::filter()
-<span class="ansi-red-fg">x</span> <span class="ansi-blue-fg">dplyr</span>::<span class="ansi-green-fg">lag()</span>    masks <span class="ansi-blue-fg">stats</span>::lag()
-<span class="ansi-cyan-fg">i</span> Use the conflicted package (<span class="ansi-blue-fg">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
 <table class="dataframe">
 <caption>A data.frame: 1 x 5</caption>
 <thead>
 <tr><th></th><th scope="col">id</th><th scope="col">human</th><th scope="col">gpt3.5</th><th scope="col">gpt4.1</th><th scope="col">gpt4.1_ashuman</th></tr>
-<tr><th></th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+<tr><th></th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-<tr><th scope="row">1</th><td>0</td><td>Cars. Cars have been around since they became famous in the 1900s, when Henry Ford created and built the first ModelT. Cars have played a major role in our every day lives since then. But now, people are starting to question if limiting car usage would be a good thing. To me, limiting the use of cars might be a good thing to do.
-
-In like matter of this, article, "In German Suburb, Life Goes On Without Cars," by Elizabeth Rosenthal states, how automobiles are the linchpin of suburbs, where middle class families from either Shanghai or Chicago tend to make their homes. Experts say how this is a huge impediment to current efforts to reduce greenhouse gas emissions from tailpipe. Passenger cars are responsible for 12 percent of greenhouse gas emissions in Europe...and up to 50 percent in some carintensive areas in the United States. Cars are the main reason for the greenhouse gas emissions because of a lot of people driving them around all the time getting where they need to go. Article, "Paris bans driving due to smog," by Robert Duffer says, how Paris, after days of nearrecord pollution, enforced a partial driving ban to clear the air of the global city. It also says, how on Monday, motorist with evennumbered license plates were ordered to leave their cars at home or be fined a 22euro fine 31. The same order would be applied to oddnumbered plates the following day. Cars are the reason for polluting entire cities like Paris. This shows how bad cars can be because, of all the pollution that they can cause to an entire city.
-
-Likewise, in the article, "Carfree day is spinning into a big hit in Bogota," by Andrew Selsky says, how programs that's set to spread to other countries, millions of Columbians hiked, biked, skated, or took the bus to work during a carfree day, leaving streets of this capital city eerily devoid of traffic jams. It was the third straight year cars have been banned with only buses and taxis permitted for the Day Without Cars in the capital city of 7 million. People like the idea of having carfree days because, it allows them to lesson the pollution that cars put out of their exhaust from people driving all the time. The article also tells how parks and sports centers have bustled throughout the city uneven, pitted sidewalks have been replaced by broad, smooth sidewalks rushhour restrictions have dramatically cut traffic and new restaurants and upscale shopping districts have cropped up. Having no cars has been good for the country of Columbia because, it has aloud them to repair things that have needed repairs for a long time, traffic jams have gone down, and restaurants and shopping districts have popped up, all due to the fact of having less cars around.
-
-In conclusion, the use of less cars and having carfree days, have had a big impact on the environment of cities because, it is cutting down the air pollution that the cars have majorly polluted, it has aloud countries like Columbia to repair sidewalks, and cut down traffic jams. Limiting the use of cars would be a good thing for America. So we should limit the use of cars by maybe riding a bike, or maybe walking somewhere that isn't that far from you and doesn't need the use of a car to get you there. To me, limiting the use of cars might be a good thing to do.</td><td>Cars have been a significant part of our daily lives since their rise to fame in the early 1900s with the creation of the Model T by Henry Ford. However, there is growing concern over the impact of excessive car usage. The reliance on cars in suburbs, as highlighted in Elizabeth Rosenthal's article "In German Suburb, Life Goes On Without Cars," has been identified as a major contributor to greenhouse gas emissions. In European cities, passenger cars are responsible for 12 percent of emissions, while in some American car-intensive areas, the figure can be as high as 50 percent. The detrimental effects of car emissions are evident in cities such as Paris, where driving bans have been enforced due to high levels of pollution. Alternatives such as car-free days, as discussed in Andrew Selsky's article "Car-free day is spinning into a big hit in Bogota," have shown promising results in reducing pollution and improving urban environments. By limiting car usage and promoting alternative modes of transportation, such as biking or walking, we can mitigate the environmental impact of cars and create healthier and more sustainable cities.</td><td>For over a century, cars have been a staple of everyday life since Henry Ford introduced the Model T in the early 1900s. They have transformed how people live, work, and travel. However, there is growing debate about whether reducing car usage could be beneficial. In my opinion, limiting how much we rely on cars could have many positive effects.
-
-For example, the article <e2>&lt;80&gt;&lt;9c&gt;In German Suburb, Life Goes On Without Cars<e2>&lt;80&gt;&lt;9d&gt; by Elizabeth Rosenthal highlights how automobiles are central to suburban life, especially for middle-class families in cities like Shanghai and Chicago. However, experts point out that this dependence on cars creates significant barriers to reducing greenhouse gas emissions, since passenger vehicles contribute to 12% of emissions in Europe and as much as 50% in certain regions of the United States. The article demonstrates how cars are a key source of pollution because so many people drive daily to reach their destinations. Similarly, Robert Duffer<e2>&lt;80&gt;&lt;99&gt;s article <e2>&lt;80&gt;&lt;9c&gt;Paris bans driving due to smog<e2>&lt;80&gt;&lt;9d&gt; describes how the city of Paris enforced a partial driving ban after several days of record pollution. On these days, only vehicles with certain license plate numbers could drive, while the others had to stay off the road or face fines. This measure was put in place to reduce pollution, illustrating just how much cars can degrade air quality in large cities like Paris.
-
-Additionally, Andrew Selsky<e2>&lt;80&gt;&lt;99&gt;s article <e2>&lt;80&gt;&lt;9c&gt;Carfree day is spinning into a big hit in Bogota<e2>&lt;80&gt;&lt;9d&gt; discusses how millions of Colombians participated in a car-free day, commuting by foot, bicycle, or public transportation. For the third year in a row, cars were banned<e2>&lt;80&gt;&lt;94&gt;except buses and taxis<e2>&lt;80&gt;&lt;94&gt;on this day, leaving the usually congested streets empty. These car-free days have proven popular with residents, as they help reduce air pollution and traffic. They have also led to infrastructure improvements, such as new, smoother sidewalks and better parks, and have spurred the growth of new restaurants and shopping areas.
-
-In conclusion, reducing how often we use cars and implementing car-free days can have a significant positive impact on urban environments, from decreasing air pollution to improving infrastructure and reducing traffic congestion. Limiting car use in America could offer similar benefits. Choosing to bike or walk, especially for short trips, is a small change individuals can make to help. I believe that taking steps to depend less on cars would be a wise move for our society.</e2></e2></e2></e2></e2></e2></e2></e2></e2></e2></td><td>Cars have become a huge part of our everyday lives since the early 1900s, especially after Henry Ford introduced the Model T. However, more people are beginning to wonder if we should cut back on how often we drive. Personally, I think reducing car use could be a good idea.
-
-In the article <e2>&lt;80&gt;&lt;9c&gt;In German Suburb, Life Goes On Without Cars<e2>&lt;80&gt;&lt;9d&gt; by Elizabeth Rosenthal, the author explains that cars are central to life in many suburbs, where most middle-class families live, whether it<e2>&lt;80&gt;&lt;99&gt;s in Shanghai or Chicago. Experts point out that this heavy reliance on cars makes it much harder to lower greenhouse gas emissions. For example, in Europe, passenger cars are responsible for about 12% of greenhouse gases, and that number goes up to 50% in some car-heavy places in the U.S. All this driving is a major factor in pollution. Another article, <e2>&lt;80&gt;&lt;9c&gt;Paris bans driving due to smog,<e2>&lt;80&gt;&lt;9d&gt; by Robert Duffer, talks about how Paris had to temporarily ban certain cars from the road after days of extremely high pollution. Drivers with certain license plates weren<e2>&lt;80&gt;&lt;99&gt;t allowed to use their cars or they faced fines. Measures like this show just how big of a problem car pollution can be for entire cities.
-
-Another example is in Bogota, Colombia. In <e2>&lt;80&gt;&lt;9c&gt;Carfree day is spinning into a big hit in Bogota,<e2>&lt;80&gt;&lt;9d&gt; Andrew Selsky describes an initiative where, for one day, cars were banned and people switched to walking, biking, skating, or using public transportation. Streets that were usually packed with traffic suddenly became quiet, and people were able to enjoy parks and neighborhoods more freely. Without cars clogging the roads, the city could fix long-neglected sidewalks, ease traffic problems, and even saw new businesses and restaurants open up.
-
-Overall, when cities cut back on car use or have car-free days, it helps the environment by reducing pollution, gives cities a chance to make needed repairs, and can even make places nicer to live. I think America could benefit from using cars less, whether that means biking, walking, or finding other ways to get around when possible. Reducing car use could definitely be a positive change.</e2></e2></e2></e2></e2></e2></e2></e2></td></tr>
+<tr><th scope="row">1</th><td>0</td><td>Cars. Cars have been around since they became famous in the 1900s, when Henry Ford created and built the first ModelT. Cars have played a major role in our every day lives since then. But now, people </td><td>Cars have been a significant part of our daily lives since their rise to fame in the early 1900s with the creation of the Model T by Henry Ford. However, there is growing concern over the impact of ex</td><td>For over a century, cars have been a staple of everyday life since Henry Ford introduced the Model T in the early 1900s. They have transformed how people live, work, and travel. However, there is grow</td><td>Cars have become a huge part of our everyday lives since the early 1900s, especially after Henry Ford introduced the Model T. However, more people are beginning to wonder if we should cut back on how </td></tr>
 </tbody>
 </table>
 </div>
@@ -7858,7 +7825,7 @@ Overall, when cities cut back on car use or have car-free days, it helps the env
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">clean_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -7873,54 +7840,6 @@ Overall, when cities cut back on car use or have car-free days, it helps the env
 <span class="n">rewrite_paras2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rewrite_paras</span><span class="w"> </span><span class="o">|&gt;</span>
 <span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">clean_text</span><span class="p">))</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-r"><pre><span></span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
-<span class="n">rewrite_paras2</span><span class="o">$</span><span class="n">`human`</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-<span class="n">rewrite_paras2</span><span class="o">$</span><span class="n">`gpt3.5`</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-<span class="n">rewrite_paras2</span><span class="o">$</span><span class="n">`gpt4.1`</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-<span class="n">rewrite_paras2</span><span class="o">$</span><span class="n">`gpt4.1_ashuman`</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-'Cars. Cars have been around since they became famous in the 1900s, when Henry Ford created and built the first ModelT. Cars have played a major role in our every day lives since then. But now, people are starting to question if limiting car usage would be a good thing. To me, limiting the use of cars might be a good thing to do.In like matter of this, article, In German Suburb, Life Goes On Without Cars, by Elizabeth Rosenthal states, how automobiles are the linchpin of suburbs, where middle class families from either Shanghai or Chicago tend to make their homes. Experts say how this is a huge impediment to current efforts to reduce greenhouse gas emissions from tailpipe. Passenger cars are responsible for 12 percent of greenhouse gas emissions in Europe...and up to 50 percent in some carintensive areas in the United States. Cars are the main reason for the greenhouse gas emissions because of a lot of people driving them around all the time getting where they need to go. Article, Paris bans driving due to smog, by Robert Duffer says, how Paris, after days of nearrecord pollution, enforced a partial driving ban to clear the air of the global city. It also says, how on Monday, motorist with evennumbered license plates were ordered to leave their cars at home or be fined a 22euro fine 31. The same order would be applied to oddnumbered plates the following day. Cars are the reason for polluting entire cities like Paris. This shows how bad cars can be because, of all the pollution that they can cause to an entire city.Likewise, in the article, Carfree day is spinning into a big hit in Bogota, by Andrew Selsky says, how programs thats set to spread to other countries, millions of Columbians hiked, biked, skated, or took the bus to work during a carfree day, leaving streets of this capital city eerily devoid of traffic jams. It was the third straight year cars have been banned with only buses and taxis permitted for the Day Without Cars in the capital city of 7 million. People like the idea of having carfree days because, it allows them to lesson the pollution that cars put out of their exhaust from people driving all the time. The article also tells how parks and sports centers have bustled throughout the city uneven, pitted sidewalks have been replaced by broad, smooth sidewalks rushhour restrictions have dramatically cut traffic and new restaurants and upscale shopping districts have cropped up. Having no cars has been good for the country of Columbia because, it has aloud them to repair things that have needed repairs for a long time, traffic jams have gone down, and restaurants and shopping districts have popped up, all due to the fact of having less cars around.In conclusion, the use of less cars and having carfree days, have had a big impact on the environment of cities because, it is cutting down the air pollution that the cars have majorly polluted, it has aloud countries like Columbia to repair sidewalks, and cut down traffic jams. Limiting the use of cars would be a good thing for America. So we should limit the use of cars by maybe riding a bike, or maybe walking somewhere that isnt that far from you and doesnt need the use of a car to get you there. To me, limiting the use of cars might be a good thing to do.'
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-'Cars have been a significant part of our daily lives since their rise to fame in the early 1900s with the creation of the Model T by Henry Ford. However, there is growing concern over the impact of excessive car usage. The reliance on cars in suburbs, as highlighted in Elizabeth Rosenthals article In German Suburb, Life Goes On Without Cars, has been identified as a major contributor to greenhouse gas emissions. In European cities, passenger cars are responsible for 12 percent of emissions, while in some American car-intensive areas, the figure can be as high as 50 percent. The detrimental effects of car emissions are evident in cities such as Paris, where driving bans have been enforced due to high levels of pollution. Alternatives such as car-free days, as discussed in Andrew Selskys article Car-free day is spinning into a big hit in Bogota, have shown promising results in reducing pollution and improving urban environments. By limiting car usage and promoting alternative modes of transportation, such as biking or walking, we can mitigate the environmental impact of cars and create healthier and more sustainable cities.'
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-'For over a century, cars have been a staple of everyday life since Henry Ford introduced the Model T in the early 1900s. They have transformed how people live, work, and travel. However, there is growing debate about whether reducing car usage could be beneficial. In my opinion, limiting how much we rely on cars could have many positive effects.For example, the article “In German Suburb, Life Goes On Without Cars” by Elizabeth Rosenthal highlights how automobiles are central to suburban life, especially for middle-class families in cities like Shanghai and Chicago. However, experts point out that this dependence on cars creates significant barriers to reducing greenhouse gas emissions, since passenger vehicles contribute to 12% of emissions in Europe and as much as 50% in certain regions of the United States. The article demonstrates how cars are a key source of pollution because so many people drive daily to reach their destinations. Similarly, Robert Duffer’s article “Paris bans driving due to smog” describes how the city of Paris enforced a partial driving ban after several days of record pollution. On these days, only vehicles with certain license plate numbers could drive, while the others had to stay off the road or face fines. This measure was put in place to reduce pollution, illustrating just how much cars can degrade air quality in large cities like Paris.Additionally, Andrew Selsky’s article “Carfree day is spinning into a big hit in Bogota” discusses how millions of Colombians participated in a car-free day, commuting by foot, bicycle, or public transportation. For the third year in a row, cars were banned—except buses and taxis—on this day, leaving the usually congested streets empty. These car-free days have proven popular with residents, as they help reduce air pollution and traffic. They have also led to infrastructure improvements, such as new, smoother sidewalks and better parks, and have spurred the growth of new restaurants and shopping areas.In conclusion, reducing how often we use cars and implementing car-free days can have a significant positive impact on urban environments, from decreasing air pollution to improving infrastructure and reducing traffic congestion. Limiting car use in America could offer similar benefits. Choosing to bike or walk, especially for short trips, is a small change individuals can make to help. I believe that taking steps to depend less on cars would be a wise move for our society.'
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-'Cars have become a huge part of our everyday lives since the early 1900s, especially after Henry Ford introduced the Model T. However, more people are beginning to wonder if we should cut back on how often we drive. Personally, I think reducing car use could be a good idea.In the article “In German Suburb, Life Goes On Without Cars” by Elizabeth Rosenthal, the author explains that cars are central to life in many suburbs, where most middle-class families live, whether it’s in Shanghai or Chicago. Experts point out that this heavy reliance on cars makes it much harder to lower greenhouse gas emissions. For example, in Europe, passenger cars are responsible for about 12% of greenhouse gases, and that number goes up to 50% in some car-heavy places in the U.S. All this driving is a major factor in pollution. Another article, “Paris bans driving due to smog,” by Robert Duffer, talks about how Paris had to temporarily ban certain cars from the road after days of extremely high pollution. Drivers with certain license plates weren’t allowed to use their cars or they faced fines. Measures like this show just how big of a problem car pollution can be for entire cities.Another example is in Bogota, Colombia. In “Carfree day is spinning into a big hit in Bogota,” Andrew Selsky describes an initiative where, for one day, cars were banned and people switched to walking, biking, skating, or using public transportation. Streets that were usually packed with traffic suddenly became quiet, and people were able to enjoy parks and neighborhoods more freely. Without cars clogging the roads, the city could fix long-neglected sidewalks, ease traffic problems, and even saw new businesses and restaurants open up.Overall, when cities cut back on car use or have car-free days, it helps the environment by reducing pollution, gives cities a chance to make needed repairs, and can even make places nicer to live. I think America could benefit from using cars less, whether that means biking, walking, or finding other ways to get around when possible. Reducing car use could definitely be a positive change.'
 </div>
 </div>
 </div>
@@ -7941,7 +7860,7 @@ Overall, when cities cut back on car use or have car-free days, it helps the env
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">rewrite_paras2</span><span class="w"> </span><span class="o">|&gt;</span>
@@ -8252,37 +8171,6 @@ Cumulative Proportion   0.5744  0.8100  1.00 1.000e+00</pre>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>It looks like only principal components 1-3 are particularly relevant, so let's see how they split the data:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-r"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>        PC1        PC2         PC3           PC4
-1 -33.41183  47.314870   2.7899590  1.955850e-12
-2 -24.59089 -28.836684  36.2171564 -2.515253e-12
-3 -22.93035 -22.791982 -39.8676947 -1.349278e-12
-4  80.93307   4.313797   0.8605793  1.894279e-12
-</pre>
-</div>
 </div>
 </div>
 </div>
